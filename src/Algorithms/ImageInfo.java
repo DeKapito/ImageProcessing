@@ -24,9 +24,13 @@ public class ImageInfo {
         pixelization = width * height;
     }
 
-    private static String getFileExtension(String filepath) {
+    public static String getFileExtension(String filepath) {
         int index = filepath.indexOf('.');
-        return index == -1? null : filepath.substring(index);
+        return index == -1? null : filepath.substring(index + 1);
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 
     public int getWidth() {
@@ -43,5 +47,9 @@ public class ImageInfo {
 
     public long getPixelization() {
         return pixelization;
+    }
+
+    public String getFileFormat() {
+        return fileFormat;
     }
 }
