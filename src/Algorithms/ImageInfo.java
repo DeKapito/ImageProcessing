@@ -1,3 +1,7 @@
+/**
+*	Author Dima Kapitula
+*/
+
 package Algorithms;
 
 import javax.imageio.ImageIO;
