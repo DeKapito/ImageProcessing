@@ -1,6 +1,7 @@
 package sample;
 
 import Algorithms.ImageInfo;
+import Algorithms.ShadesGray;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,7 +21,7 @@ public class Controller {
     @FXML
     private Button informationButton;
     @FXML
-    private ImageView resultPicture;
+    private ImageView viewPicture;
     @FXML
     private Label labelWidth;
     @FXML
@@ -35,6 +36,7 @@ public class Controller {
     private String filepath;
     private BufferedImage startImage;
     private BufferedImage resultImage;
+    private String fileExtension;
 
     @FXML
     public void clickChooseFile() {
@@ -43,40 +45,52 @@ public class Controller {
                                         new FileChooser.ExtensionFilter("JPG", "*.jpg"),
                                         new FileChooser.ExtensionFilter("PNG", "*.png"),
                                         new FileChooser.ExtensionFilter("BMP", "*.bmp"));
+
         File selectedFile = fc.showOpenDialog(null);
         if(selectedFile != null) {
             filepath = selectedFile.getAbsolutePath();
             try {
                 startImage = ImageIO.read(new File(filepath));
+                fileExtension = ImageInfo.getFileExtension(filepath);
                 resultImage = startImage;
             } catch (IOException e) {
                 labelWidth.setText("Не вдалось відкрити зображення");
             }
         }
+        resetInfo();
         setResultPicture(resultImage);
     }
 
     @FXML
     public void saveFile() {
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().addAll(//new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png"),
-                new FileChooser.ExtensionFilter("BMP", "*.bmp"));
+        fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(fileExtension.toUpperCase(), "*." + fileExtension));
         File selectedFile = fc.showSaveDialog(null);
 
         try {
-            ImageIO.write(resultImage, ImageInfo.getFileExtension(selectedFile.getAbsolutePath()), selectedFile);
+            ImageIO.write(resultImage, fileExtension, selectedFile);
         } catch (Exception e) {
             labelWidth.setText("Не вдалось зберегти зображення");
         }
     }
 
-    @FXML
     public void setResultPicture(BufferedImage image) {
-        resultPicture.setImage(SwingFXUtils.toFXImage(image, null));
+        if(image != null)
+            viewPicture.setImage(SwingFXUtils.toFXImage(image, null));
     }
 
+    @FXML
+    public void shadesGray() {
+        if(resultImage != null) {
+            ShadesGray transform = new ShadesGray(startImage);
+            resultImage = transform.getGrayImage();
+            setResultPicture(resultImage);
+        }
+    }
+
+    /**
+     *  Можна спростити клас ImageInfo для роботи з BufferedImage
+     */
     @FXML
     public void clickInformationButton() {
         try {
@@ -89,5 +103,13 @@ public class Controller {
         } catch (IOException | NullPointerException e) {
             labelWidth.setText("Не вдалось відкрити зображення");
         }
+    }
+
+    public void resetInfo() {
+        labelWidth.setText("");
+        labelHeight.setText("");
+        labelDepth.setText("");
+        labelPixelization.setText("");
+        labelFileExtension.setText("");
     }
 }

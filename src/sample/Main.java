@@ -26,7 +26,6 @@ public class Main extends Application {
         primaryStage.show();
 
         Controller controller = loader.getController();
-
     }
 
     public Stage getPrimaryStage() {
