@@ -2,6 +2,7 @@ package Algorithms;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 
 public class ShadesGray {
@@ -11,7 +12,7 @@ public class ShadesGray {
     private int width;
 
     public ShadesGray(BufferedImage image) {
-        this.image = image;
+        this.image = deepCopy(image);
         height = image.getHeight();
         width = image.getWidth();
     }
@@ -39,5 +40,12 @@ public class ShadesGray {
             }
         }
         return image;
+    }
+
+    static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
     }
 }

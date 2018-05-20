@@ -18,7 +18,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="informationButton" layoutX="14.0" layoutY="82.0" mnemonicParsing="false" onAction="#clickInformationButton" prefHeight="50.0" prefWidth="195.0" text="Інформація" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                  <Button fx:id="informationButton" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" onAction="#clickInformationButton" prefHeight="50.0" prefWidth="195.0" text="Інформація" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -28,7 +28,12 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button layoutX="10.0" layoutY="155.0" mnemonicParsing="false" onAction="#shadesGray" prefHeight="50.0" prefWidth="195.0" text="Відтінки сірого" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#shadesGray" prefHeight="50.0" prefWidth="195.0" text="Відтінки сірого" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onAction="#binarization" prefHeight="50.0" prefWidth="195.0" text="Бінаризація" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#pseudoTone" prefHeight="50.0" prefWidth="195.0" text="Псевдотонування" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="10.0" layoutY="360.0" mnemonicParsing="false" onAction="#floydSteinberg" prefHeight="50.0" prefWidth="195.0" text="Дифузія помилки" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="10.0" layoutY="430.0" mnemonicParsing="false" onAction="#blurBox" prefHeight="50.0" prefWidth="195.0" text="Лінійне розмиття" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <Button layoutX="10.0" layoutY="500.0" mnemonicParsing="false" onAction="#gaussBlur" prefHeight="50.0" prefWidth="195.0" text="Розмиття Гаусса" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

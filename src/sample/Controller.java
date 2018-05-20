@@ -1,7 +1,6 @@
 package sample;
 
-import Algorithms.ImageInfo;
-import Algorithms.ShadesGray;
+import Algorithms.*;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +19,16 @@ public class Controller {
     private Button btnChooseFile;
     @FXML
     private Button informationButton;
+    @FXML
+    private Button binarizationButton;
+    @FXML
+    private Button pseudoToneButton;
+    @FXML
+    private Button floydSteinbergButton;
+    @FXML
+    private Button blurBoxButton;
+    @FXML
+    private Button gaussBlurButton;
     @FXML
     private ImageView viewPicture;
     @FXML
@@ -81,16 +90,58 @@ public class Controller {
 
     @FXML
     public void shadesGray() {
-        if(resultImage != null) {
+        if(startImage != null) {
             ShadesGray transform = new ShadesGray(startImage);
             resultImage = transform.getGrayImage();
             setResultPicture(resultImage);
         }
     }
 
-    /**
-     *  Можна спростити клас ImageInfo для роботи з BufferedImage
-     */
+    @FXML
+    public void binarization() {
+        if(startImage != null) {
+            Binarization binarization = new Binarization(startImage);
+            resultImage = binarization.getBinarizedImage();
+            setResultPicture(resultImage);
+        }
+    }
+
+    @FXML
+    public void pseudoTone() {
+        if(startImage != null) {
+            PseudoTone pseudoTone = new PseudoTone(startImage);
+            resultImage = pseudoTone.getPseudoTone();
+            setResultPicture(resultImage);
+        }
+    }
+
+    @FXML
+    public void blurBox() {
+        if(startImage != null) {
+            BlurBox blurBox = new BlurBox(startImage);
+            resultImage = blurBox.getResultImage();
+            setResultPicture(resultImage);
+        }
+    }
+
+    @FXML
+    public void gaussBlur() {
+        if(startImage != null) {
+            GaussBlur gaussBlur = new GaussBlur(startImage);
+            resultImage = gaussBlur.getResultImage();
+            setResultPicture(resultImage);
+        }
+    }
+
+    @FXML
+    public void floydSteinberg() {
+        if(startImage != null) {
+            FloydSteinberg floydSteinberg = new FloydSteinberg(startImage);
+            resultImage = floydSteinberg.getResultImage();
+            setResultPicture(resultImage);
+        }
+    }
+
     @FXML
     public void clickInformationButton() {
         try {
