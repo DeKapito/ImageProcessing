@@ -51,7 +51,6 @@ public class PseudoTone {
                 }
 
                 result.setRGB(x, y, colorToRGB(alpha, gray, gray, gray));
-
             }
         }
 
