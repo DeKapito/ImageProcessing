@@ -51,29 +51,29 @@ public class FloydSteinberg {
                 if(x + 1 < width){
                     colorOfPixel = new Color(image.getRGB(x + 1, y));
                     rightPixel = colorOfPixel.getRed();
-                    rightPixel += (err * 7) >> 4;//.0/16;
+                    rightPixel += ((err * 7) >> 4);//.0/16;
                     image.setRGB(x + 1, y, colorToRGB(colorOfPixel.getAlpha(), rightPixel, rightPixel, rightPixel));
                 }
 
                 if((x - 1 >= 0) && (y + 1 < height)) {
                     colorOfPixel = new Color(image.getRGB(x - 1, y + 1));
                     leftDownPixel = colorOfPixel.getRed();
-                    leftDownPixel += (err * 3) >> 4; /// 16;
+                    leftDownPixel += ((err * 3) >> 4); /// 16;
                     image.setRGB(x - 1, y + 1, colorToRGB(colorOfPixel.getAlpha(), leftDownPixel, leftDownPixel, leftDownPixel));
                 }
 
                 if(y + 1 < height) {
                     colorOfPixel = new Color(image.getRGB(x, y + 1));
                     downPixel = colorOfPixel.getRed();
-                    downPixel += (err * 5) >> 4;//.0 / 16;
+                    downPixel += ((err * 5) >> 4);//.0 / 16;
                     image.setRGB(x, y + 1, colorToRGB(colorOfPixel.getAlpha(), downPixel, downPixel, downPixel));
                 }
 
                 if((y + 1 < height) && (x + 1 < width)) {
                     colorOfPixel = new Color(image.getRGB(x + 1, y + 1));
                     rightDownPixel = colorOfPixel.getRed();
-                    rightDownPixel += (err / 16.0);
-                    image.setRGB(x + 1, y + 1, colorToRGB(colorOfPixel.getAlpha(), rightDownPixel, colorOfPixel.getGreen(), colorOfPixel.getBlue()));
+                    rightDownPixel += (err >> 4);
+                    image.setRGB(x + 1, y + 1, colorToRGB(colorOfPixel.getAlpha(), rightDownPixel, rightDownPixel, rightDownPixel));
                 }
             }
         }
